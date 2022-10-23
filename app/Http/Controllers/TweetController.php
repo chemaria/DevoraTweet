@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\TwittweConnection;
+use App\Services\TwitterConnection;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 
@@ -16,8 +16,9 @@ class TweetController extends Controller
      */
     public function index()
     {
-        $tweet = new TwittweConnection();
-        echo $tweet->getData();
+        echo "hola";
+        $tweet = new TwitterConnection();
+        dump($tweet->getData());
     }
 
     /**

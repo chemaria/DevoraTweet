@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [TweetController::class, 'index']);
+Route::get('/api-call', [TweetController::class, 'index']);

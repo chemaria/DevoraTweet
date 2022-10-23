@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->integer('idtweet');
             $table->string('tweets');
-            $table->string('hastags');
             $table->integer('likes');
             $table->timestamps();
         });
