@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <h1 align="center">DevoraTweet</h1>
-<p align="center"> Aplicación que recupera los 100 útimos tweets con el hasta #farina </p>
+<p align="center"> Aplicación que recupera los 100 útimos tweets de la API de Twitter con el hasta #farina </p>
 
 - He creado un Job para hacer la llamada a la API de Twitter e informar la BD en otro hilo y que no bloquee el principal.<br>
 - Este Job está encolado en un kernel task y lo lanzo cada minuto (pruebas en dev)<br>
