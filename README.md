@@ -3,7 +3,7 @@
 <h1 align="center">DevoraTweet</h1>
 <p align="center"> Aplicación que recupera los 100 útimos tweets de la API de Twitter con el hasta #farina </p>
 
-- He creado un Job para hacer la llamada a la API de Twitter e informar la BD en otro hilo y que no bloquee el principal.<br>
+- He creado un Job para hacer la llamada a la API de Twitter e informar la BD, se lanza en otro hilo para no bloquear el principal.<br>
 - Este Job está encolado en un kernel task y lo lanzo cada minuto (pruebas en dev)<br>
 
 1. Levantamos Laravel: php artisan serve<br>
