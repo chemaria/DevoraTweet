@@ -16,9 +16,11 @@ class TweetController extends Controller
      */
     public function index()
     {
-        Tweet::all();
-        return view('');
+        $tweets = Tweet::all();
+        return view('index', ['tweets' => $tweets]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
