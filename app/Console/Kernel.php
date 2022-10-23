@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->job(new MakeTwitterApiRequest)->everyFourHours()->withoutOverlapping();
+        $schedule->job(new MakeTwitterApiRequest)->everyMinute()->withoutOverlapping();
     }
 
     /**

@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Services\TwitterConnection;
 use App\Models\Tweet;
+use Illuminate\Support\Facades\Storage;
 
 class MakeTwitterApiRequest implements ShouldQueue
 {
@@ -22,7 +23,7 @@ class MakeTwitterApiRequest implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        $this->handle();
     }
 
     /**
@@ -30,14 +31,18 @@ class MakeTwitterApiRequest implements ShouldQueue
      *
      * @return void
      */
-    public function handle(TwitterConnection $apiTwitter)
+    public function handle()
     {
-        $tweet = new Tweet();
+        $apiTwitter = new TwitterConnection();
+
         $response = $apiTwitter->getData();
         foreach ($response as $data) {
-            $tweet->idtweet = $data['id_tweet'];
+            $tweet = new Tweet();
+            $tweet->idtweet = (int)$data['id_tweet'];
             $tweet->tweets = $data['text'];
-            $tweet->likes = $data['likes'];
+            $tweet->likes = (int)$data['likes'];
+            $tweet->save();
         }
+        Storage::append("prueba.json", json_encode($response));
     }
 }

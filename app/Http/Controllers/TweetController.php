@@ -16,9 +16,8 @@ class TweetController extends Controller
      */
     public function index()
     {
-        echo "hola";
-        $tweet = new TwitterConnection();
-        dump($tweet->getData());
+        Tweet::all();
+        return view('');
     }
 
     /**

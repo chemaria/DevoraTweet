@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
-            $table->integer('idtweet');
+            $table->bigInteger('idtweet');
             $table->string('tweets');
             $table->integer('likes');
             $table->timestamps();

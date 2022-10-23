@@ -22,12 +22,12 @@ class TwitterConnection
       'hastag' => 'farina',
       'idTweet' => 0,
       'limitTweets' => 15,
-      'limitLikes' => 100,
+      'limitLikes' => '100',
       'categoria' => 'tweets'
     ], $data);
     try {
       $url = $data['categoria'] === 'tweets' ? "https://api.twitter.com/2/tweets/search/recent?query=%23{$data['hastag']}&max_results={$data['limitTweets']}" :
-        "https://api.twitter.com/2/tweets/{$data['idTweet']}/liking_users?max_results={$data['limitLikes']}";
+        "https://api.twitter.com/2/tweets/{$data['idTweet']}/liking_users?max_results=100";
 
       $response  = Http::withToken(config('constants.twitter.BEARER_TOKEN_TWITTER'))->get($url)->json();
 
