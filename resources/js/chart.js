@@ -1,12 +1,11 @@
 import Chart from "chart.js/auto";
-import { slice, toInteger } from "lodash";
 
 const response = await fetch("http://127.0.0.1:8000/api/api-call");
 const tweetData = await response.json();
 const { datos } = tweetData;
 
 console.log(datos);
-const date = [];
+
 const totalTweetDays = {};
 datos.forEach((element) => {
     if (String(element.tweet_created_at).slice(8, -8) in totalTweetDays) {
