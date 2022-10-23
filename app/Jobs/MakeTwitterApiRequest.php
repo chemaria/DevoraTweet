@@ -41,6 +41,7 @@ class MakeTwitterApiRequest implements ShouldQueue
             $tweet->idtweet = (int)$data['id_tweet'];
             $tweet->tweets = $data['text'];
             $tweet->likes = (int)$data['likes'];
+            $tweet->tweet_created_at = $data['tweet_created_at'];
             $tweet->save();
         }
         Storage::append("prueba.json", json_encode($response));

@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('idtweet');
-            $table->string('tweets');
+            $table->text('tweets');
             $table->integer('likes');
+            $table->dateTime('tweet_created_at');
             $table->timestamps();
         });
     }

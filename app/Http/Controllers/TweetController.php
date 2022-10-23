@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\TwitterConnection;
 use App\Models\Tweet;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 
@@ -19,8 +20,18 @@ class TweetController extends Controller
         $tweets = Tweet::all();
         return view('index', ['tweets' => $tweets]);
     }
+    /**
+     * Undocumented function
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiResponse()
+    {
+        $tweets = Tweet::all();
 
-
+        // return new Response(200, array('Content-Type: application/json'), $tweets[0]);
+        return response()->json(['status' => 200, 'datos' => $tweets]);
+    }
 
     /**
      * Show the form for creating a new resource.

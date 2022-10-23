@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [TweetController::class, 'index']);
+Route::get('/grafica', function () {
+  return view('grafica');
+});

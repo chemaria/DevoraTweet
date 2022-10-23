@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Http;
-use PhpParser\Node\Expr\Cast\Object_;
+
 
 class TwitterConnection
 {
@@ -21,13 +22,13 @@ class TwitterConnection
     $data = array_replace_recursive([
       'hastag' => 'farina',
       'idTweet' => 0,
-      'limitTweets' => 15,
-      'limitLikes' => '100',
+      'limitTweets' => 100,
+      'limitLikes' => 100,
       'categoria' => 'tweets'
     ], $data);
     try {
-      $url = $data['categoria'] === 'tweets' ? "https://api.twitter.com/2/tweets/search/recent?query=%23{$data['hastag']}&max_results={$data['limitTweets']}" :
-        "https://api.twitter.com/2/tweets/{$data['idTweet']}/liking_users?max_results=100";
+      $url = $data['categoria'] === 'tweets' ? "https://api.twitter.com/2/tweets/search/recent?query=%23{$data['hastag']}&max_results={$data['limitTweets']}&tweet.fields=created_at" :
+        "https://api.twitter.com/2/tweets/{$data['idTweet']}/liking_users?max_results={$data['limitLikes']}";
 
       $response  = Http::withToken(config('constants.twitter.BEARER_TOKEN_TWITTER'))->get($url)->json();
 
@@ -54,7 +55,7 @@ class TwitterConnection
       foreach ($getTweets as $id => $tweet) {
         $totalTweet[$id]['text'] = $tweet['text'];
         $totalTweet[$id]['id_tweet'] = $tweet['id'];
-
+        $totalTweet[$id]['tweet_created_at'] = Carbon::parse($tweet['created_at'])->setTimezone('Europe/Madrid')->format('Y-m-d H');
         $totalTweet[$id]['likes'] = !empty($this->callApi(['idTweet' => $totalTweet[$id]['id_tweet'], 'categoria' => 'likes'])) ?
           count($this->callApi(['idTweet' => $totalTweet[$id]['id_tweet']], 'likes')) : 0;
       }

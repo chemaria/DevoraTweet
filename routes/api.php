@@ -18,4 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/api-call', [TweetController::class, 'index']);
+Route::get('/api-call', [TweetController::class, 'apiResponse']);
+// Route::get('/api-call', function () {
+//     return json_encode(["hola" => "adios"]);
+// });
