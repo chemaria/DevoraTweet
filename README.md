@@ -6,9 +6,11 @@
 - He creado un Job para hacer la llamada a la API de Twitter e informar la BD, se lanza en otro hilo para no bloquear el principal.<br>
 - Este Job está encolado en un kernel task y lo lanzo cada minuto (pruebas en dev)<br>
 
-1. Levantamos Laravel: php artisan serve<br>
-2. Levantamos vite: npm run dev<br>
-3. Poner a la escucha un worker: php artisan queue:work<br>
-4. Validamos que tememos la tarea en el Scheduler:  php artisan schedule:list <br>
+1. Poner a la escucha un worker: php artisan queue:work <br>
+2. Validamos que tememos la tarea en el Scheduler:  php artisan schedule:list <br>
 "* * * * *  App\Jobs\MakeTwitterApiRequest ......................................................................................................."<br>
-4. Arrancar el Scheduler desde crontab o manual para probar con artisan: php artisan schedule:run 
+3. Arrancar el Scheduler desde crontab o manual, para probar con artisan: php artisan schedule:run <br> 
+4. Levantamos vite: npm run dev<br>
+5. Levantamos Laravel: php artisan serve<br>
+
+
